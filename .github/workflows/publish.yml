@@ -10,7 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-      - name: Echo out an ENV var
+      - name: Get the action
         uses: uvarc/awscli-action@v0.1
+      - name: Checkout
+        uses: action/checkout@v2
+      - name: Echo out a VAR
         run: echo ${{ACCORDCI_AWS_KEY_ID}}
 
