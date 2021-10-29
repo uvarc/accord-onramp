@@ -1,15 +1,21 @@
-name: Upload to S3
+name: Upload and Publish
 
-on: [push]
+on:
+  push:
+    branches:
+    - main
 
 jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: shallwefootball/s3-upload-action@master
-        with:
-          aws_key_id: ${{ secrets.ACCORDCI_AWS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.ACCORDCI_AWS_SECRET_ACCESS_KEY}}
-          aws_bucket: accord-frontdoor
-          source_dir: ''
+    - uses: actions/checkout@master
+    - uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --delete
+      env:
+        AWS_S3_BUCKET: 'accord-frontdoor'
+        AWS_ACCESS_KEY_ID: ${{ secrets.ACCORDCI_AWS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.ACCORDCI_AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: 'us-east-1'
+        SOURCE_DIR: ''
