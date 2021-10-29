@@ -15,5 +15,5 @@ jobs:
       - name: Checkout
         uses: action/checkout@v2
       - name: Echo out a VAR
-        run: echo ${{secret.ACCORDCI_AWS_KEY_ID}}
+        run: echo ${{ secrets.ACCORDCI_AWS_KEY_ID }}
 
