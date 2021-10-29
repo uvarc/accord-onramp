@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      use: action/checkout@v2
+      uses: action/checkout@v2
     - name: Install aws cli
-      use: isbang/setup-awscli@v0.1.0
+      uses: isbang/setup-awscli@v0.1.0
 
