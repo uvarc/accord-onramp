@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Upload files
-      uses: hannut91/aws-cli@v1.18.178
+      uses: ItsKarma/aws-cli@v1.70.0
       with:
         args: s3 sync . s3://accord-frontdoor/ --acl public-read --delete
       env:
