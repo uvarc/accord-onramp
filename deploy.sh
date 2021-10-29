@@ -5,3 +5,4 @@ aws --profile defaultz s3 sync . s3://accord-frontdoor/ --acl public-read --dele
 
 # invalidate CF cache
 aws --profile defaultz cloudfront create-invalidation --distribution-id E33CY0JIMDZFTI --paths "/*"
+
