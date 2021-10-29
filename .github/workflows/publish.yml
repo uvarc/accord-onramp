@@ -13,5 +13,5 @@ jobs:
       - name: Get the action
         uses: uvarc/awscli-action@v0.1
       - name: Echo out a VAR
-        run: echo ${{ secrets.ACCORDCI_AWS_KEY_ID }}
+        run: aws s3 ls
 
