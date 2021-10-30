@@ -13,5 +13,5 @@ jobs:
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     - name: Run container
-      run: docker run -it -e AWS_ACCESS_KEY_ID=${{ secrets.ACCORDCI_AWS_KEY_ID }} -e AWS_SECRET_ACCESS_KEY=${{ secrets.ACCORDCI_AWS_SECRET_ACCESS_KEY }} ghcr.io/uvarc/onramp-builder /build.sh
+      run: docker run -e AWS_ACCESS_KEY_ID=${{ secrets.ACCORDCI_AWS_KEY_ID }} -e AWS_SECRET_ACCESS_KEY=${{ secrets.ACCORDCI_AWS_SECRET_ACCESS_KEY }} ghcr.io/uvarc/onramp-builder /build.sh
  
