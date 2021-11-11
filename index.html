@@ -26,26 +26,26 @@
       -moz-user-select: none;
       user-select: none;
     }
-
     @media (min-width: 768px) {
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
       }
     }
-
     .ip-good {
         background-color: #D4EDDA;
         border: solid 1px #BFD6C5;
         padding:6px;
         margin: 6px 0 18px 0;
-        text-align: center;
+        padding-left:12px;
+        text-align: left;
     }
     .ip-bad {
         background-color: #D4EDDA;
         border: solid 1px #BFD6C5;
         padding:6px;
         margin: 6px 0 18px 0;
-        text-align: center;
+        padding-left:12px;
+        text-align: left;
     }
   </style>
 
@@ -140,7 +140,7 @@ function checkStatusMessages() {
         <h2>Get to Work</h2>
         <p>Click the button below to open the ACCORD Portal. This requires that your local computer meets all security
             policy requirements and that you are connecting from the right location.</p>
-        <div class="ip-good">Your current IP address is <b><code><span id="myip"></span></code></b></div>
+        <div class="ip-good">Your IP address is <b><code><span id="myip"></span></code></b></div>
         <a href="https://accord-portal.uvarc.io/" class="btn btn-primary">
           Open the Portal
         </a>

@@ -9,15 +9,11 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-      - actions/checkout@v2
-      - uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - uses: nelonoel/branch-name@v1
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-      - name: Get container
-        run: docker pull ghcr.io/uvarc/onramp-builder
-      - name: Run container
-        run: docker run -e AWS_ACCESS_KEY_ID=${{ secrets.ACCORDCI_AWS_KEY_ID }} -e AWS_SECRET_ACCESS_KEY=${{ secrets.ACCORDCI_AWS_SECRET_ACCESS_KEY }} ghcr.io/uvarc/onramp-builder /build.sh
+    - uses: nelonoel/branch-name@v1
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+    - name: Get container
+      run: docker pull ghcr.io/uvarc/onramp-builder
+    - name: Run container
+      run: docker run -e AWS_ACCESS_KEY_ID=${{ secrets.ACCORDCI_AWS_KEY_ID }} -e AWS_SECRET_ACCESS_KEY=${{ secrets.ACCORDCI_AWS_SECRET_ACCESS_KEY }} ghcr.io/uvarc/onramp-builder /build.sh
  
