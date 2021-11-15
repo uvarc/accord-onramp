@@ -65,7 +65,8 @@ async function validateIp(ip) {
 async function getIpClient() {
     try {
         const response = await axios.get('https://api.ipify.org?format=json');
-        validate();
+        ip = response.data.ip;
+        validateIp(ip);
         document.getElementById("myip").textContent = response.data.ip;
     } catch (error) {
         console.error(error);
