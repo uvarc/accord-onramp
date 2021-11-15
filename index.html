@@ -71,7 +71,7 @@ async function validateIp(ip) {
       // return false;
       document.getElementById("ip-status").classList.remove("ip-good");
       document.getElementById("ip-status").classList.add("ip-bad");
-      document.getElementById("ip-status").innerHTML = "Your address/location <b><code><span id="myip"></span></code></b> is not valid for ACCORD access. Please contact your system administrator.";
+      document.getElementById("ip-status").innerHTML = "Your address/location <b><code><span id='myip'></span></code></b> is not valid for ACCORD access. Please contact your system administrator.";
     }
     console.error(validate)
   } catch (error) {
