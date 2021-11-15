@@ -58,7 +58,7 @@ def check_blocks(user_ip):
 def index():
     return {'hello': 'world'}
 
-@app.route('/validate/{ip}')
+@app.route('/validate/{ip}', methods=['GET'], cors=True)
 def validate_ip(ip):
    verify = check_blocks(ip)
    if (verify == True):

@@ -53,9 +53,19 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 
+function validateIp(ip) {
+  try {
+    const validate = await axios.get('https://06iteam4j8.execute-api.us-east-1.amazonaws.com/api/validate/' + ip);
+    console.error(validate)
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 async function getIpClient() {
     try {
         const response = await axios.get('https://api.ipify.org?format=json');
+        validate();
         document.getElementById("myip").textContent = response.data.ip;
     } catch (error) {
         console.error(error);
