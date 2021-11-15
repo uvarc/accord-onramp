@@ -38,12 +38,19 @@ def get_blocks():
         blocks.append(subn)
     return blocks
 
+# def check_blocks(user_ip):
+#     blocks = get_blocks()
+#     print(blocks)
+#     for block['block'] in blocks:
+#         if ip_in_prefix(user_ip, block):
+#             print("We have a match")
+#             return True
+
 def check_blocks(user_ip):
     blocks = get_blocks()
-    print(blocks)
-    for block['block'] in blocks:
-        if ip_in_prefix(user_ip, block):
-            print("We have a match")
+    for block in blocks:
+        if ip_in_prefix(user_ip, block['block']):
+            # return {"status":"true","campus": block["campus"]}
             return True
 
 # -------- api begins --------- #
