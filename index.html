@@ -66,7 +66,7 @@ async function validateIp(ip) {
       status = validate.data.status;
       // ip = validate.data.ip;
       // console.error("Your ACCORD member status is: ", status, " and your IP is: ", ip);
-
+      document.getElementById("portal-btn").classList.remove("hide");
     } else {
       return false;
     }
