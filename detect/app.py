@@ -62,6 +62,6 @@ def index():
 def validate_ip(ip):
    verify = check_blocks(ip)
    if (verify == True):
-       return {'message': "{} is a valid IP address".format(ip), "status":"true","institution":""}
+       return {'message': "{} is a valid IP address".format(ip), "status":"true","institution":"", "ip": ip}
    else:
-       return {'message': "{} is an invalid IP address".format(ip), "status":"false"}
+       return {'message': "{} is an invalid IP address".format(ip), "status":"false", "ip": ip}
