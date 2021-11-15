@@ -40,7 +40,7 @@
         text-align: left;
     }
     .ip-bad {
-        background-color: #D4EDDA;
+        background-color: #F9D7DA;
         border: solid 1px #BFD6C5;
         padding:6px;
         margin: 6px 0 18px 0;
@@ -69,6 +69,8 @@ async function validateIp(ip) {
       document.getElementById("portal-btn").classList.remove("hide");
     } else {
       return false;
+      document.getElementById("ip-status").classList.remove("ip-good");
+      document.getElementById("ip-status").classList.add("ip-bad");
     }
     console.error(validate)
   } catch (error) {
@@ -165,7 +167,7 @@ function checkStatusMessages() {
         <h2>Get to Work</h2>
         <p>Click the button below to open the ACCORD Portal. This requires that your local computer meets all security
             policy requirements and that you are connecting from the right location.</p>
-        <div class="ip-good">Your IP address is <b><code><span id="myip"></span></code></b></div>
+        <div class="ip-good" id="ip-status">Your IP address is <b><code><span id="myip"></span></code></b></div>
         <a href="https://accord-portal.uvarc.io/" class="btn btn-primary hide" id="portal-btn">
           Open the Portal
         </a>
