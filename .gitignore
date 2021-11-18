@@ -1,3 +1,4 @@
+blocks.txt
 detect/.chalice/deployments/
 detect/.chalice/venv/
 __pycache__/*
