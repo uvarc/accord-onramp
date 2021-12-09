@@ -50,18 +50,19 @@ def check_blocks(user_ip):
     blocks = get_blocks()
     for block in blocks:
         if ip_in_prefix(user_ip, block['block']):
-            # return {"status":"true","campus": block["campus"]}
-            return True
+            return {"status":"true","campus": block["campus"]}
+            # return True
 
 # -------- api begins --------- #
-@app.route('/')
-def index():
-    return {'hello': 'world'}
+# @app.route('/')
+# def index():
+#     return {'hello': 'world'}
 
 @app.route('/validate/{ip}', methods=['GET'], cors=True)
 def validate_ip(ip):
    verify = check_blocks(ip)
-   if (verify == True):
-       return {'message': "{} is a valid IP address".format(ip), "status":"true","institution":"", "ip": ip}
+   # if (verify == True):
+   if (verify["status"] == "true"):
+       return {'message': "{} is a valid IP address".format(ip), "status":"true","institution":verify["campus"], "ip": ip}
    else:
        return {'message': "{} is an invalid IP address".format(ip), "status":"false", "ip": ip}

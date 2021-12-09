@@ -27,7 +27,9 @@ async function validateIp(ip) {
     const validate = await axios.get('https://06iteam4j8.execute-api.us-east-1.amazonaws.com/api/validate/' + ip);
     if (validate.data.status == 'true') {
       status = validate.data.status;
+      campus = validate.data.institution;
       document.getElementById("portal-btn").classList.remove("hide");
+      document.getElementById("campus").textContent = campus;
     } else {
       document.getElementById("ip-status").classList.remove("ip-good");
       document.getElementById("ip-status").classList.add("ip-bad");
@@ -127,7 +129,10 @@ function checkStatusMessages() {
         <h2>Get to Work</h2>
         <p>Click the button below to open the ACCORD Portal. This requires that your local computer meets all security
             policy requirements and that you are connecting from the right location.</p>
-        <div class="ip-good" id="ip-status">Your IP address is <b><code><span id="myip"></span></code></b></div>
+        <div class="ip-good" id="ip-status">
+          Your IP address is <b><code><span id="myip"></span></code></b>
+          connecting from the <b><span id="campus"></span></b> network.
+        </div>
         <a href="https://accord-portal.uvarc.io/" class="btn btn-primary hide" id="portal-btn">
           Open the Portal
         </a>
