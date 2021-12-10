@@ -65,4 +65,4 @@ def validate_ip(ip):
    if (verify["status"] == "true"):
        return {'message': "{} is a valid IP address".format(ip), "status":"true","institution":verify["campus"], "ip": ip}
    else:
-       return {'message': "{} is an invalid IP address".format(ip), "status":"false", "ip": ip}
+       return {'message': "{} is not a valid IP address".format(ip), "status":"false", "ip": ip}
