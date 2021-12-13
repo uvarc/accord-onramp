@@ -50,16 +50,11 @@ def campus_mapping(user_ip):
         if ip_in_prefix(user_ip, c['block']):
             return {"status":"true","campus": c["campus"]}
 
-# -------- api begins --------- #
-# @app.route('/')
-# def index():
-#     return {'hello': 'world'}
 
 @app.route('/validate/{ip}', methods=['GET'], cors=True)
 def validate_ip(ip):
    verify = check_blocks(ip)
    if (verify == True):
-   # if (verify["status"] == "true"):
        get_campus = campus_mapping(ip)
        return {'message': "{} is a valid IP address".format(ip), "status":"true","institution":get_campus["campus"], "ip": ip}
    else:
