@@ -1,6 +1,9 @@
 blocks.txt
 detect/.chalice/deployments/
 detect/.chalice/venv/
+api/.chalice/deployments/
 __pycache__/*
 *__pycache__
 __pycache__/
+exp-imp/
+*Pipfile.lock*

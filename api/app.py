@@ -20,10 +20,10 @@ def ip_in_prefix(ip_address, prefix):
     prefix_network = get_addr_network(prefix_address, net_size)
     ip_network = get_addr_network(ip_address, net_size)
     if (ip_network == prefix_network):
-        print("YES belongs")
+        # print("YES belongs")
         return True
     else:
-        print("NOT belongs")
+        # print("NOT belongs")
         return False
     return ip_network == prefix_network
 
@@ -38,20 +38,17 @@ def get_blocks():
         blocks.append(subn)
     return blocks
 
-# def check_blocks(user_ip):
-#     blocks = get_blocks()
-#     print(blocks)
-#     for block['block'] in blocks:
-#         if ip_in_prefix(user_ip, block):
-#             print("We have a match")
-#             return True
-
 def check_blocks(user_ip):
     blocks = get_blocks()
     for block in blocks:
         if ip_in_prefix(user_ip, block['block']):
-            return {"status":"true","campus": block["campus"]}
-            # return True
+            return True
+
+def campus_mapping(user_ip):
+    campus = get_blocks()
+    for c in campus:
+        if ip_in_prefix(user_ip, c['block']):
+            return {"status":"true","campus": c["campus"]}
 
 # -------- api begins --------- #
 # @app.route('/')
@@ -61,8 +58,9 @@ def check_blocks(user_ip):
 @app.route('/validate/{ip}', methods=['GET'], cors=True)
 def validate_ip(ip):
    verify = check_blocks(ip)
-   # if (verify == True):
-   if (verify["status"] == "true"):
-       return {'message': "{} is a valid IP address".format(ip), "status":"true","institution":verify["campus"], "ip": ip}
+   if (verify == True):
+   # if (verify["status"] == "true"):
+       get_campus = campus_mapping(ip)
+       return {'message': "{} is a valid IP address".format(ip), "status":"true","institution":get_campus["campus"], "ip": ip}
    else:
        return {'message': "{} is not a valid IP address".format(ip), "status":"false", "ip": ip}
