@@ -33,7 +33,7 @@ async function validateIp(ip) {
     } else {
       document.getElementById("ip-status").classList.remove("ip-good");
       document.getElementById("ip-status").classList.add("ip-bad");
-      document.getElementById("ip-status").innerHTML = "Your IP address <b><code><span id='myip'>" + ip + "</span></code></b> is not authorized to access ACCORD. Please make sure you are accessing this system from your campus network or institutional VPN.";
+      document.getElementById("ip-status").innerHTML = "Your IP address <b><code><span id='myip'>" + ip + "</span></code></b> is not authorized to access ACCORD. Please make sure you are accessing this system from your campus network or campus VPN.";
     }
   } catch (error) {
     console.error(error);
