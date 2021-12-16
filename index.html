@@ -54,13 +54,14 @@ async function getIpClient() {
 }
 
 async function getMetaAccess() {
-  const getaccess = await axios.get('https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0').then(console.log)
-  .catch(function(error) {
+  try {
+    const getaccess = await axios.get('https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0');
+    console.log('MetaAccess success');
+  } catch (error) {
     if (!error.status) {
-      // network error
-      console.log('Network error');
+      console.log('Network Error');
     }
-  })
+  }
 };
 
 // WORKS BUT CRUDELY
