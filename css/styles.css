@@ -27,6 +27,14 @@
       text-align: left;
       font-size:90%;
   }
+  .ma-status {
+    border: solid 1px #BFD6C5;
+    padding:6px;
+    margin: 6px 0 18px 0;
+    padding-left:12px;
+    text-align: left;
+    font-size:90%;
+  }
   .hide {
       display: none;
   }

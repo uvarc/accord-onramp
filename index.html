@@ -59,9 +59,11 @@ async function getMetaAccess() {
     instance.defaults.timeout = 100;
     const getaccess = await instance.get('https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0');
     console.log('MetaAccess success');
+    document.getElementById("ma-success").classList.remove("hide");
   } catch (error) {
     if (!error.status) {
       console.log('MetaAccess failure');
+      document.getElementById("ma-failure").classList.remove("hide");
     }
   }
 };
@@ -180,6 +182,14 @@ $(document).ready(function() {
         <div class="ip-good hide" id="ip-status">
           Your IP address is <b><code><span id="myip"></span></code></b>
           connecting from the <b><span id="campus"></span></b> network.
+        </div>
+        <div class="ma-status hide" id="ma-success">
+          <img src="images/opswat-metaaccess.jpg" alt="OPSWAT MetaAccess" style="max-width:20px;margin-right:0.5rem;" />
+          MetaAccess is installed.
+        </div>
+        <div class="ma-status hide" id="ma-failure">
+          <img src="images/red-x.png" alt="MetaAccess Missing" style="max-width:20px;margin-right:0.5rem;" />
+          MetaAccess is not installed.
         </div>
         <a href="https://accord-portal.uvarc.io/" class="btn btn-primary hide" id="portal-btn">
           Open the Portal
