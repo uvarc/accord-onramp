@@ -40,7 +40,7 @@ async function validateIp(ip) {
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 async function getIpClient() {
     try {
@@ -51,15 +51,17 @@ async function getIpClient() {
     } catch (error) {
         console.error(error);
     }
-}
+};
 
 async function getMetaAccess() {
   try {
-    const getaccess = await axios.get('https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0');
+    const instance = axios.create();
+    instance.defaults.timeout = 100;
+    const getaccess = await instance.get('https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0');
     console.log('MetaAccess success');
   } catch (error) {
     if (!error.status) {
-      console.log('Network Error');
+      console.log('MetaAccess failure');
     }
   }
 };
@@ -93,16 +95,6 @@ async function getMetaAccess() {
 //     }
 // };
 
-$(document).ready(function() {
-  $("#status-message").hide();
-  checkStatusMessages();
-  setInterval(checkStatusMessages, 30000);
-  getIpClient();
-  // getMetaAccessState();
-  // axios();
-  getMetaAccess();
-});
-
 function checkStatusMessages() {
     $.getJSON('https://47tpa1dam4.execute-api.us-east-1.amazonaws.com/api/accord/messages', function(data) {
         var messageData = '';
@@ -119,7 +111,18 @@ function checkStatusMessages() {
             }
         });
     });
-}
+};
+
+$(document).ready(function() {
+  $("#status-message").hide();
+  checkStatusMessages();
+  setInterval(checkStatusMessages, 30000);
+  getIpClient();
+  // getMetaAccessState();
+  // axios();
+  getMetaAccess();
+});
+
 </script>
   
 <!-- Custom styles for this template -->
