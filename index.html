@@ -34,10 +34,10 @@ async function validateIp(ip) {
       document.getElementById("campus").textContent = campus;
 
     } else {
-      document.getElementById("ip-status").classList.remove("ip-good");
-      document.getElementById("ip-status").classList.remove("hide");
-      document.getElementById("ip-status").classList.add("ip-bad");
-      document.getElementById("ip-status").innerHTML = "Your IP address <b><code><span id='myip'>" + ip + "</span></code></b> is not authorized to access ACCORD. Please make sure you are accessing this system from your campus network or campus VPN.";
+      // document.getElementById("ip-status").classList.remove("ip-good");
+      document.getElementById("ip-status-bad").classList.remove("hide");
+      // document.getElementById("ip-status").classList.add("ip-bad");
+      document.getElementById("ip-status-bad-text").innerHTML = "Your IP address <b><code><span id='myip'>" + ip + "</span></code></b> is not authorized to access ACCORD. Please make sure you are accessing this system from your campus network or campus VPN.";
     }
   } catch (error) {
     console.error(error);
@@ -183,11 +183,16 @@ $(document).ready(function() {
         <p>Verify your access to the ACCORD Portal. Your local computer must meet all security
            requirements and connect from the right network.</p>
         <div class="ip-good hide" id="ip-status">
+          <img src="images/green-check.png" alt="IP Accessibility" style="max-width:20px;margin-right:0.5rem;" />
           Your IP address is <b><code><span id="myip"></span></code></b>
           connecting from the <b><span id="campus"></span></b> network.
         </div>
+        <div class="ip-bad hide" id="ip-status-bad">
+          <img src="images/red-x.png" alt="IP Accessibility" style="max-width:20px;margin-right:0.5rem;" />
+          <span id="ip-status-bad-text"></span>
+        </div>
         <div class="ma-status hide" id="ma-success">
-          <img src="images/green-check.jpg" alt="OPSWAT MetaAccess" style="max-width:20px;margin-right:0.5rem;" />
+          <img src="images/green-check.png" alt="OPSWAT MetaAccess" style="max-width:20px;margin-right:0.5rem;" />
           MetaAccess is installed and running.
         </div>
         <div class="ma-status hide" id="ma-failure">
