@@ -53,11 +53,43 @@ async function getIpClient() {
     }
 }
 
+axios({
+    method: 'GET',
+    url: `https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0`,
+  }).then(console.log).catch(function(error) {
+  // console.dir(error);
+  // console.log('error.status: ', error.status)
+  if (!error.status) {
+    // network error
+    console.log('MetaAccess unavailable')
+  } else {
+    console.log('MetaAccess available')
+  }
+});
+
+// async function getMetaAccessState() {
+//     const instance = axios.create();
+//     instance.defaults.timeout = 100;
+//     const opswat = await instance.get('https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0');
+//     try {
+//         // console.log(opswat, " This has worked");
+//         console.log("MetaAccess Present")
+//     } catch (error) {
+//         code = error.code;
+//         if (code === 'ECONNABORTED') {
+//             console.log(error);
+//             console.log("MetaAccess Not Present");
+//         }
+//     }
+// };
+
 $(document).ready(function() {
   $("#status-message").hide();
   checkStatusMessages();
   setInterval(checkStatusMessages, 30000);
   getIpClient();
+  // getMetaAccessState();
+  axios();
 });
 
 function checkStatusMessages() {
