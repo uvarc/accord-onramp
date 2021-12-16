@@ -34,9 +34,7 @@ async function validateIp(ip) {
       document.getElementById("campus").textContent = campus;
 
     } else {
-      // document.getElementById("ip-status").classList.remove("ip-good");
       document.getElementById("ip-status-bad").classList.remove("hide");
-      // document.getElementById("ip-status").classList.add("ip-bad");
       document.getElementById("ip-status-bad-text").innerHTML = "Your IP address <b><code><span id='myip'>" + ip + "</span></code></b> is not authorized to access ACCORD. Please make sure you are accessing this system from your campus network or campus VPN.";
     }
   } catch (error) {
@@ -60,45 +58,16 @@ async function getMetaAccess() {
     const instance = axios.create();
     instance.defaults.timeout = 100;
     const getaccess = await instance.get('https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0');
-    // console.log('MetaAccess success');
+    // If success
     document.getElementById("ma-success").classList.remove("hide");
   } catch (error) {
+    // If error
     if (!error.status) {
-      // console.log('MetaAccess failure');
       document.getElementById("ma-failure").classList.remove("hide");
       document.getElementById("portal-btn").classList.add("hide");
     }
   }
 };
-
-// WORKS BUT CRUDELY
-// const metaaccess = axios({
-//     method: 'GET',
-//     url: `https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0`,
-//   }).then(console.log).catch(function(error) {
-//   // console.dir(error);
-//   // console.log('error.status: ', error.status)
-//   if (!error.status) {
-//     // network error
-//     console.log('MetaAccess unavailable')
-//   }
-// });
-
-// async function getMetaAccessState() {
-//     const instance = axios.create();
-//     instance.defaults.timeout = 100;
-//     const opswat = await instance.get('https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0');
-//     try {
-//         // console.log(opswat, " This has worked");
-//         console.log("MetaAccess Present")
-//     } catch (error) {
-//         code = error.code;
-//         if (code === 'ECONNABORTED') {
-//             console.log(error);
-//             console.log("MetaAccess Not Present");
-//         }
-//     }
-// };
 
 function checkStatusMessages() {
     $.getJSON('https://47tpa1dam4.execute-api.us-east-1.amazonaws.com/api/accord/messages', function(data) {
@@ -123,9 +92,6 @@ $(document).ready(function() {
   checkStatusMessages();
   setInterval(checkStatusMessages, 30000);
   getIpClient();
-  // getMetaAccessState();
-  // axios();
-  // getMetaAccess();
 });
 
 </script>
