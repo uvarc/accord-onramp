@@ -53,19 +53,28 @@ async function getIpClient() {
     }
 }
 
-axios({
-    method: 'GET',
-    url: `https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0`,
-  }).then(console.log).catch(function(error) {
-  // console.dir(error);
-  // console.log('error.status: ', error.status)
-  if (!error.status) {
-    // network error
-    console.log('MetaAccess unavailable')
-  } else {
-    console.log('MetaAccess available')
-  }
-});
+async function getMetaAccess() {
+  const getaccess = await axios.get('https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0').then(console.log)
+  .catch(function(error) {
+    if (!error.status) {
+      // network error
+      console.log('Network error');
+    }
+  })
+};
+
+// WORKS BUT CRUDELY
+// const metaaccess = axios({
+//     method: 'GET',
+//     url: `https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0`,
+//   }).then(console.log).catch(function(error) {
+//   // console.dir(error);
+//   // console.log('error.status: ', error.status)
+//   if (!error.status) {
+//     // network error
+//     console.log('MetaAccess unavailable')
+//   }
+// });
 
 // async function getMetaAccessState() {
 //     const instance = axios.create();
@@ -89,7 +98,8 @@ $(document).ready(function() {
   setInterval(checkStatusMessages, 30000);
   getIpClient();
   // getMetaAccessState();
-  axios();
+  // axios();
+  getMetaAccess();
 });
 
 function checkStatusMessages() {
