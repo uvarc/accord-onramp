@@ -60,11 +60,11 @@ async function getMetaAccess() {
     const instance = axios.create();
     instance.defaults.timeout = 100;
     const getaccess = await instance.get('https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0');
-    console.log('MetaAccess success');
+    // console.log('MetaAccess success');
     document.getElementById("ma-success").classList.remove("hide");
   } catch (error) {
     if (!error.status) {
-      console.log('MetaAccess failure');
+      // console.log('MetaAccess failure');
       document.getElementById("ma-failure").classList.remove("hide");
       document.getElementById("portal-btn").classList.add("hide");
     }
