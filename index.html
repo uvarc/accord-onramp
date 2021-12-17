@@ -19,85 +19,11 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Roboto:wght@100;300;500&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-
-async function validateIp(ip) {
-  try {
-    const validate = await axios.get('https://06iteam4j8.execute-api.us-east-1.amazonaws.com/api/validate/' + ip);
-    getMetaAccess();
-    if (validate.data.status == 'true') {
-      status = validate.data.status;
-      campus = validate.data.institution;
-      document.getElementById("portal-btn").classList.remove("hide");
-      document.getElementById("ip-status").classList.remove("hide");
-      document.getElementById("campus").textContent = campus;
-
-    } else {
-      document.getElementById("ip-status-bad").classList.remove("hide");
-      document.getElementById("ip-status-bad-text").innerHTML = "Your IP address <b><code><span id='myip'>" + ip + "</span></code></b> is not authorized to access ACCORD. Please make sure you are accessing this system from your campus network or campus VPN.";
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-async function getIpClient() {
-    try {
-        const response = await axios.get('https://api.ipify.org?format=json');
-        ip = response.data.ip;
-        validateIp(ip);
-        document.getElementById("myip").textContent = response.data.ip;
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-async function getMetaAccess() {
-  try {
-    const instance = axios.create();
-    instance.defaults.timeout = 100;
-    const getaccess = await instance.get('https://eapi.opswatgears.com:11369/opswat/devinfo?callback=js0');
-    // If success
-    document.getElementById("ma-success").classList.remove("hide");
-  } catch (error) {
-    // If error
-    if (!error.status) {
-      document.getElementById("ma-failure").classList.remove("hide");
-      document.getElementById("portal-btn").classList.add("hide");
-    }
-  }
-};
-
-function checkStatusMessages() {
-    $.getJSON('https://47tpa1dam4.execute-api.us-east-1.amazonaws.com/api/accord/messages', function(data) {
-        var messageData = '';
-        $.each(data, function(key, value) {
-            var messageBody = value.body;
-            var messageLength = messageBody.length;
-            if ( messageLength < 22 ) {
-                $("#status-message").hide();
-            } else {
-                $("#status-message").show();
-                messageData += '<i class="fas fa-exclamation-triangle"></i>';
-                messageData += value.body;
-                $('#status-message-content').html(messageData);
-            }
-        });
-    });
-};
-
-$(document).ready(function() {
-  $("#status-message").hide();
-  checkStatusMessages();
-  setInterval(checkStatusMessages, 30000);
-  getIpClient();
-});
-
-</script>
+<script src="js/onramp.min.js"></script>
   
 <!-- Custom styles for this template -->
 <link href="css/features.css" rel="stylesheet">
@@ -128,11 +54,11 @@ $(document).ready(function() {
 </svg>
 <main>
 
-<div class="container px-4 py-5" id="hanging-icons" style="margin-top:4rem;">
+<div class="container px-4 py-5 top" id="hanging-icons">
   <h2 class="pb-2 border-bottom">
     <span style="font-family: 'Michroma', sans-serif; font-size:110%;">ACCORD</span><br />
-    A secure platform for collaborative research
   </h2>
+  <span style="font-size:2rem;font-weight:100;">A secure platform for collaborative research</span>
   <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
     <div class="col d-flex align-items-start">
       <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
