@@ -1,4 +1,5 @@
 blocks.txt
+apache2-blocks.txt
 detect/.chalice/deployments/
 detect/.chalice/venv/
 api/.chalice/deployments/

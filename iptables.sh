@@ -12,4 +12,4 @@ aws --profile uvarc dynamodb scan --table-name accord-blocks | jq -r .'Items'[].
 echo ""
 
 
-aws --profile uvarc dynamodb scan --table-name accord-blocks | jq -r .'Items[] } "Require ip " + .block_value'.'S' > apache2-blocks.txt
+aws --profile uvarc dynamodb scan --table-name accord-blocks | jq -r .'Items[] | "Require ip " + .block_value'.'S' > apache2-blocks.txt
